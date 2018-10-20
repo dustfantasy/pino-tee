@@ -8,6 +8,7 @@ const Parse = require('fast-json-parse')
 const minimist = require('minimist')
 const pino = require('pino')
 const fs = require('fs')
+const streamroller = require('streamroller');
 
 function tee (origin) {
   const clone = cloneable(origin)
@@ -68,7 +69,10 @@ function start () {
     if (dest === ':2') {
       dest = process.stderr
     } else {
-      dest = fs.createWriteStream(dest, {flags: 'a'})
+      dest = new streamroller.DateRollingFileStream(dest, '.yyyy-MM-dd',{
+        alwaysIncludePattern:true,
+        keepFileExt:true
+      });
     }
 
     pairs.push({

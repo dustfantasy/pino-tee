@@ -43,6 +43,7 @@
     "pino": "^4.7.0",
     "pump": "^1.0.2",
     "readable-stream": "^2.3.3",
-    "split2": "^2.1.1"
+    "split2": "^2.1.1",
+    "streamroller": "^0.8.5"
   }
 }
