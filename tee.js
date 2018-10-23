@@ -27,7 +27,7 @@ function buildFilter (filter) {
     const num = pino.levels.values[filter]
 
     if (typeof num === 'number' && isFinite(num)) {
-      filter = function (v) { return v.level >= num }
+      filter = function (v) { return v.level === num }
     } else {
       throw new Error('no such level')
     }
@@ -69,10 +69,10 @@ function start () {
     if (dest === ':2') {
       dest = process.stderr
     } else {
-      dest = new streamroller.DateRollingFileStream(dest, '.yyyy-MM-dd',{
-        alwaysIncludePattern:true,
-        keepFileExt:true
-      });
+      dest = new streamroller.DateRollingFileStream(dest, '.yyyy-MM-dd', {
+        alwaysIncludePattern: true,
+        keepFileExt: true
+      })
     }
 
     pairs.push({
